@@ -1,0 +1,22 @@
+class Solution {
+public:
+   TreeNode* constructBST(vector<int>& a, int &i, int ub){
+       if(i==a.size() || a[i]>ub )  return NULL;
+       TreeNode* root=new TreeNode(a[i++]);
+       root->left=constructBST(a,i,root->val);
+       root->right=constructBST(a,i,ub);
+       return root;
+   }
+    TreeNode* bstFromPreorder(vector<int>&a) {
+        int i=0;
+       return constructBST(a,i,INT_MAX);
+    }
+};
+
+Time Complexity - O(n)
+Space Complexity- O(1)
+
+
+Using Inorder
+Time Complexity - O(nlogn)+O(n)
+Space Complexity- O(n)
