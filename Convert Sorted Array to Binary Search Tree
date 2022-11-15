@@ -1,0 +1,17 @@
+class Solution {
+public:
+TreeNode* constructBST(vector<int>&a, int l, int r){
+    while(l<=r){
+        int  mid=l+(r-l)/2;
+        TreeNode* root=new TreeNode(a[mid]);
+        root->left=constructBST(a,l,mid-1);
+        root->right=constructBST(a,mid+1,r);
+        return root;
+    }
+    return NULL;
+}
+    TreeNode* sortedArrayToBST(vector<int>& a) {
+       int n=a.size();
+       return constructBST(a,0,n-1);
+    }
+};
