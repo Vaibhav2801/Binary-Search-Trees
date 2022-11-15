@@ -1,0 +1,13 @@
+class Solution {
+public:
+ bool checkBinaryTree(TreeNode *root,long int lb ,long int ub){
+     if(root==NULL ) return true;
+     cout<<root->val<<" "<<lb<<" "<<ub<<endl;
+     if(root->val<=lb || root->val>=ub) return false;
+     return checkBinaryTree(root->left,lb,root->val) and checkBinaryTree(root->right,root->val,ub);
+ }
+    bool isValidBST(TreeNode* root) {
+      
+        return checkBinaryTree(root,LONG_MIN,LONG_MAX);
+    }
+};
