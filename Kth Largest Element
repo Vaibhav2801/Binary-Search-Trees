@@ -1,0 +1,21 @@
+class Solution {
+public:
+    void inorder(TreeNode* root,int k,int &cnt,int &x){
+        if(root==NULL) return;
+         inorder(root->left,k,cnt,x);
+         cnt++;
+         if(k==cnt)  x=root->val;
+         inorder(root->right,k,cnt,x);
+         
+    }
+    int kthSmallest(TreeNode* root, int k) {
+        int cnt=0,x=0;
+         inorder(root,k,cnt,x);
+       return x;
+    }
+};
+
+TC-O(n)
+SC-O(n) in recursion
+
+SC-O(1) in morris traversal 
