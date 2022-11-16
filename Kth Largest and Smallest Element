@@ -19,3 +19,22 @@ TC-O(n)
 SC-O(n) in recursion
 
 SC-O(1) in morris traversal 
+
+
+class Solution
+{
+    public:
+    void inorder(Node* root,int k, int &cnt, int &x){
+        if(root==NULL)  return;
+        inorder(root->right,k,cnt,x);
+        cnt++;
+        if(cnt==k)  x=root->data;
+        inorder(root->left,k,cnt,x);
+    }
+    int kthLargest(Node *root, int K)
+    {
+       int cnt=0,x=0;
+       inorder(root,K,cnt,x);
+       return x;
+    }
+};
