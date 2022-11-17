@@ -1,0 +1,50 @@
+class BSTIterator{
+private:
+stack<TreeNode*> s;
+int reverse=true;
+public:
+ BSTIterator(TreeNode* root,int reverseInt)
+{
+    reverse=reverseInt;
+   pushAll(root);
+}
+
+bool hasnext(){
+    return !s.empty();
+}
+
+int next(){
+TreeNode* temp=s.top();
+s.pop();
+if(reverse) pushAll(temp->left);
+else pushAll(temp->right);
+return temp->val;
+}
+
+void pushAll(TreeNode* root){
+if(root==NULL)  return;
+ s.push(root);
+if(reverse==true)     root=root->right;
+else    root=root->left;
+pushAll(root);
+}
+};
+
+class Solution {
+public:
+    bool findTarget(TreeNode* root, int k) {
+        if(!root)  return false;
+        BSTIterator l(root,false);
+        BSTIterator r(root,true);//before;
+          int x=l.next();
+          int y=r.next();
+          cout<<x<<" "<<y<<endl;
+        while(x<y){
+            if(x+y==k)  return true;
+            else if(x+y<k) x=l.next();
+            else y=r.next();
+            cout<<x<<" "<<y<<endl;
+        }
+        return false;
+
+    }
